@@ -42,7 +42,7 @@
 #include "property_service.h"
 
 using android::base::GetProperty;
-using android::init::property_set;
+using android::base::SetProperty;
 
 #define RAW_ID_PATH     "/sys/devices/soc0/raw_id"
 #define BUF_SIZE         64
@@ -105,7 +105,7 @@ static void init_alarm_boot_properties()
      * 7 -> CBLPWR_N pin toggled (for external power supply)
      * 8 -> KPDPWR_N pin toggled (power key pressed)
      */
-    property_set("ro.alarm_boot", boot_reason == 3 ? "true" : "false");
+    SetProperty("ro.alarm_boot", boot_reason == 3 ? "true" : "false");
 }
 
 void property_override(char const prop[], char const value[])
@@ -152,16 +152,16 @@ void vendor_load_properties()
     property_override_dual("ro.build.product", "ro.vendor.build.product", "ZC550KL");
 
     /* Heap Set */
-    property_set("dalvik.vm.heapstartsize", "8m");
-    property_set("dalvik.vm.heapgrowthlimit", "192m");
-    property_set("dalvik.vm.heapsize", "512m");
-    property_set("dalvik.vm.heaptargetutilization", "0.75");
-    property_set("dalvik.vm.heapminfree", "2m");
-    property_set("dalvik.vm.heapmaxfree", "8m");
+    SetProperty("dalvik.vm.heapstartsize", "8m");
+    SetProperty("dalvik.vm.heapgrowthlimit", "192m");
+    SetProperty("dalvik.vm.heapsize", "512m");
+    SetProperty("dalvik.vm.heaptargetutilization", "0.75");
+    SetProperty("dalvik.vm.heapminfree", "2m");
+    SetProperty("dalvik.vm.heapmaxfree", "8m");
 
     /* Display Flicker Fix */
-    property_set("debug.hwui.use_buffer_age", "false");
-    property_set("ro.opengles.version", "196608");
+    SetProperty("debug.hwui.use_buffer_age", "false");
+    SetProperty("ro.opengles.version", "196608");
 
     } else
 
@@ -177,24 +177,24 @@ void vendor_load_properties()
     property_override_dual("ro.product.device", "ro.vendor.product.device", p_device);
     property_override_dual("ro.product.model", "ro.vendor.product.model", "ASUS_Z010DD");
     property_override_dual("ro.build.product", "ro.vendor.build.product", "ZC550KL");
-    property_set("ro.build.project.name", "ZC550KL");
+    SetProperty("ro.build.project.name", "ZC550KL");
 
     /* Heap Set */
-    property_set("dalvik.vm.heapstartsize", "5m");
-    property_set("dalvik.vm.heapgrowthlimit", "128m");
-    property_set("dalvik.vm.heapsize", "256m");
-    property_set("dalvik.vm.heaptargetutilization", "0.75");
-    property_set("dalvik.vm.heapminfree", "512k");
-    property_set("dalvik.vm.heapmaxfree", "2m");
+    SetProperty("dalvik.vm.heapstartsize", "5m");
+    SetProperty("dalvik.vm.heapgrowthlimit", "128m");
+    SetProperty("dalvik.vm.heapsize", "256m");
+    SetProperty("dalvik.vm.heaptargetutilization", "0.75");
+    SetProperty("dalvik.vm.heapminfree", "512k");
+    SetProperty("dalvik.vm.heapmaxfree", "2m");
 
     /* Display Flicker Fix */
-    property_set("ro.opengles.version", "196610");
+    SetProperty("ro.opengles.version", "196610");
 
     }
 
     else {
-        property_set("ro.product.model", "Zenfone"); // this should never happen.
+        SetProperty("ro.product.model", "Zenfone"); // this should never happen.
     }
     // Init a dummy BT MAC address, will be overwritten later
-    property_set("ro.boot.btmacaddr", "00:00:00:00:00:00");
+    SetProperty("ro.boot.btmacaddr", "00:00:00:00:00:00");
 }
