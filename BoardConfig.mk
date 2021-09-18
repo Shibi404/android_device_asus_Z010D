@@ -13,8 +13,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# inherit from common msm8916-common
--include device/asus/msm8916-common/BoardConfigCommon.mk
+# Inherit from msm8916-common
+include device/asus/msm8916-common/BoardConfigCommon.mk
 
 DEVICE_PATH := device/asus/Z010D
 
@@ -45,3 +45,6 @@ TARGET_RELEASETOOLS_EXTENSIONS += $(DEVICE_PATH)/releasetools
 # Init
 TARGET_INIT_VENDOR_LIB := libinit_Z010D
 TARGET_RECOVERY_DEVICE_MODULES := libinit_Z010D
+
+# Inherit the proprietary files
+include vendor/asus/Z010D/BoardConfigVendor.mk
